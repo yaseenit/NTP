@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="changeme" default="run" basedir=".">
+   
+  
+     
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src/" destdir="build/classes" />
+    	
+          
+          
+        </target>
+
+    <target name="jar" depends="compile" >
+        
+       
+        <jar destfile="dist/TimeServer.jar" basedir="build/classes" >
+        	<manifest>
+            <attribute name="Main-Class"
+                  value="ntp.TimeServer"/>
+          </manifest></jar>
+        <jar destfile="dist/TimeClient.jar" basedir="build/classes" >
+        	<manifest>
+        	            <attribute name="Main-Class"
+        	                  value="ntp.TimeClient"/>
+        	          </manifest>
+        </jar>
+        
+        
+    </target>
+
+    <target name="run" depends="jar">
+       
+        <java jar="dist/TimeServer.jar"  fork="true" spawn="true"/>
+        	<java jar="dist/TimeClient.jar"  fork="true" />
+        
+            
+        
+        
+        
+          
+            
+        
+       
+     </target>
+   
+    
+</project>
+    
